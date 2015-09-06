@@ -5,9 +5,9 @@ this.recline.View = this.recline.View || {};
 
 (function($, my) {
   "use strict";
-// turn off unnecessary logging from VMM Timeline
-if (typeof VMM !== 'undefined') {
-  VMM.debug = false;
+// turn off unnecessary logging from VCO Timeline
+if (typeof VCO !== 'undefined') {
+  VCO.debug = false;
 }
 
 // ## Timeline
@@ -16,7 +16,7 @@ if (typeof VMM !== 'undefined') {
 my.Timeline = Backbone.View.extend({
   template: ' \
     <div class="recline-timeline"> \
-      <div id="vmm-timeline-id"></div> \
+      <div id="vco-timeline-id"></div> \
     </div> \
   ',
 
@@ -24,11 +24,11 @@ my.Timeline = Backbone.View.extend({
   // If not found, the user will need to define these fields on initialization
   startFieldNames: ['date','startdate', 'start', 'start-date'],
   endFieldNames: ['end','endDate'],
-  elementId: '#vmm-timeline-id',
+  elementId: 'vco-timeline-id',
 
   initialize: function(options) {
     var self = this;
-    this.timeline = new VMM.Timeline(this.elementId);
+    this.timeline = new VCO.Timeline(this.elementId);
     this._timelineIsInitialized = false;
     this.listenTo(this.model.fields, 'reset', function() {
       self._setupTemporalField();
